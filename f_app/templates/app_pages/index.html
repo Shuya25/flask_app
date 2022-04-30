@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>show index.html!</h1>
+    <img src="{{ url_for('static', filename='images/download.jpeg') }}">
+    <p id="test">{{ insert_datas.insert1 }}</p>
+    <p>{{ insert_datas.insert2 }}</p>
+
+    <h2> show titles</h2>
+    <ul>
+        {% for title in insert_datas.test_titles %}
+            <li>{{ title }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<script src="{{ url_for('static', filename='javascript/sample.js') }}"></script>
+{% endblock %}

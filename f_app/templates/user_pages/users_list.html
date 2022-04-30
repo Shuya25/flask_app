@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Users list</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">名前</th>
+                <th scope="col">メール</th>
+                <th scope="col">リモート状況</th>
+                <th scope="col">部署</th>
+                <th scope="col">勤続年数</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row">{{ user.id }}</th>
+                    <td>
+                        <a class="text-decoration-none" href="{{ url_for('user_detail', id=user.id) }}">{{ user.name }}</a>
+                    </td>
+                    <td>{{ user.mail }}</td>
+                    {% if user.is_remote %}
+                    <td>リモート</td>
+                    {% else %}
+                    <td>出勤</td>
+                    {% endif %}
+                    <td>{{ user.department }}</td>
+                    <td>{{ user.year }}年</td>
+                    <td>
+                        <form action="{{ url_for('user_delete', id=user.id) }}" method="POST">
+                            <input class="btn btn-danger btn-sm" type="submit" value="delete">
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
